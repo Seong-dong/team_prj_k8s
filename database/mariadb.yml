@@ -1,0 +1,63 @@
+## 디플로이먼트
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-deploy # 디플로이먼트 이름
+  namespace: default
+spec:
+  replicas: 1
+  selector:           # deployment - pod 대응용
+    matchLabels:
+      app: mariadb  #파드를 찾기위한 라벨 지정
+  # strategy:
+  #   type: Recreate # 오류발생시 재생성.
+  template:         # 여기서부터 파드 템플릿
+    metadata:
+      labels:
+        app: mariadb      # 파드의 라벨
+    spec:
+      containers:
+      - name: mariadb
+        image: seongdong/django_blog_mariadb
+        # image: centos/mariadb-102-centos7
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mariadb-data
+        # - mountPath: /usr/src/app/_static
+        #   name: static-volume
+        # - mountPath: /usr/src/app/_media
+        #   name: media-volume
+        ports :
+        - containerPort: 3306
+        # command: ["sh", "-c"]
+        # args: ["useradd sdjo && chown 1000:1000 -R /var/lib/mysql"]
+        env:
+        - name: MARIADB_USER
+          value: "icurfer"
+        - name: MARIADB_PASSWORD
+          value: "P@ssw0rd!@"
+        - name: MARIADB_DATABASE
+          value: "do_it_django_prod"
+        - name : MARIADB_ROOT_PASSWORD
+          value: "P@ssw0rd!@"
+      securityContext:
+        runAsUser: 1000
+
+
+      volumes:
+      # - name: default
+      #   emptyDir: {}
+        # hostPath:
+        #   path: /home/vagrant/github/django_blog
+        #   type: Directory
+      - name: mariadb-data
+        persistentVolumeClaim:
+          claimName: efs-claim
+          # readOnly: false
+        # emptyDir: {}
+      # - name: static-volume
+      #   persistentVolumeClaim:
+      #     claimName: efs-claim
+      # - name: media-volume
+      #   persistentVolumeClaim:
+      #     claimName: efs-claim
