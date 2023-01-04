@@ -3,7 +3,7 @@ kind: Kustomization
 images:
 - name: 448559955338.dkr.ecr.ap-northeast-2.amazonaws.com/app
   newName: 448559955338.dkr.ecr.ap-northeast-2.amazonaws.com/app
-  newTag: 31c994bd
+  newTag: 95a53606
 - name: 448559955338.dkr.ecr.ap-northeast-2.amazonaws.com/web
   newName: 448559955338.dkr.ecr.ap-northeast-2.amazonaws.com/web
   newTag: 2b609b42
