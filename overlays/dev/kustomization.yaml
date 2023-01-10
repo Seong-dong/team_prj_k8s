@@ -3,19 +3,7 @@ kind: Kustomization
 images:
 - name: 446448472447.dkr.ecr.ap-northeast-2.amazonaws.com/app
   newName: 446448472447.dkr.ecr.ap-northeast-2.amazonaws.com/app
-<<<<<<< HEAD
   newTag: 31c994bd
-- name: 446448472447.dkr.ecr.ap-northeast-2.amazonaws.com/web
-  newName: 446448472447.dkr.ecr.ap-northeast-2.amazonaws.com/web
-=======
-  newTag: b1518f2e
-- name: 448559955338.dkr.ecr.ap-northeast-2.amazonaws.com/app
-  newName: 448559955338.dkr.ecr.ap-northeast-2.amazonaws.com/app
-  newTag: 0b415303
-- name: 448559955338.dkr.ecr.ap-northeast-2.amazonaws.com/web
-  newName: 448559955338.dkr.ecr.ap-northeast-2.amazonaws.com/web
->>>>>>> 5fa2124f73ef4b7d870044ffdea22cc103cfc1bf
-  newTag: 2b609b42
 resources:
 - ../../base
 patchesStrategicMerge:
