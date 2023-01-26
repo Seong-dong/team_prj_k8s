@@ -13,3 +13,13 @@ spec:
     metadata:
       labels:
         app: django-blog
+    spec:
+      containers:
+        - name: web
+          volumeMounts: 
+          - mountPath: /usr/src/app/_media
+            name: media-volume
+      volumes:
+        - name: media-volume
+          persistentVolumeClaim:
+          claimName: efs-claim
