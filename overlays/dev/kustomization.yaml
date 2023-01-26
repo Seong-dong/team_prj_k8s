@@ -3,7 +3,7 @@ kind: Kustomization
 images:
 - name: 446448472447.dkr.ecr.ap-northeast-2.amazonaws.com/app
   newName: 446448472447.dkr.ecr.ap-northeast-2.amazonaws.com/app
-  newTag: c0b629b1
+  newTag: 5810f41b
 resources:
 - ../../base
 patchesStrategicMerge:

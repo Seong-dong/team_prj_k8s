@@ -18,7 +18,7 @@ spec:
     # django
       - name: web
         # image: seongdong/django_blog_web:k8s
-        image: 446448472447.dkr.ecr.ap-northeast-2.amazonaws.com/app:6dfda9a0
+        image: 446448472447.dkr.ecr.ap-northeast-2.amazonaws.com/app:5810f41b
         volumeMounts:
         - mountPath: /usr/src/app/_static
           name: static-volume
