@@ -15,11 +15,40 @@ spec:
         app: django-blog
     spec:
       containers:
-        - name: web
-          volumeMounts: 
-          - mountPath: /usr/src/app/_media
-            name: media-volume
+      - name: web
+        volumeMounts:
+        - mountPath: /usr/src/app/_static
+          name: static-volume
+        - mountPath: /usr/src/app/_media
+          name: media-volume
+        env:
+        - name: DEBUG
+          value: "1"
+        - name: SECRET_KEY
+          value: "')mbk%3ueg))za)h-k@=ir7hzt#i!4much*_pyk=t83$7hy+edi'"
+        - name: SQL_ENGINE
+          value: "django.db.backends.mysql"
+        - name : SQL_DATABASE
+          value: "do_it_django_prod"
+        - name: SQL_USER
+          value: "icurfer"
+        - name: SQL_PASSWORD
+          value: "P@ssw0rd!@"
+        - name: SQL_HOST
+          value: "172.20.100.101"
+        - name: SQL_PORT
+          value: "3306"
+          ports :
+          - containerPort: 8000
+
+          command: ["sh", "-c"]
+          args: ["python manage.py makemigrations && python manage.py makemigrations board && python manage.py migrate && python manage.py collectstatic && gunicorn django_blog_sdjo.wsgi:application --bind 0.0.0.0:8000"]
+        
       volumes:
-        - name: media-volume
-          persistentVolumeClaim:
+      - name: default
+        emptyDir: {}
+      - name: static-volume
+        emptyDir: {}
+      - name: media-volume
+        persistentVolumeClaim:
           claimName: efs-claim
