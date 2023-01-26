@@ -38,11 +38,6 @@ spec:
           value: "172.20.100.101"
         - name: SQL_PORT
           value: "3306"
-          ports :
-          - containerPort: 8000
-
-          command: ["sh", "-c"]
-          args: ["python manage.py makemigrations && python manage.py makemigrations board && python manage.py migrate && python manage.py collectstatic && gunicorn django_blog_sdjo.wsgi:application --bind 0.0.0.0:8000"]
         
       volumes:
       - name: default
